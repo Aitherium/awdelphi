@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1",
+  "name": "awdelphi",
+  "description": "Anonymous multi-round expert panels — a converged answer with a trace.",
+  "url": "https://aitherium.github.io/awdelphi/",
+  "repository": "https://github.com/Aitherium/awdelphi",
+  "kind": "tool",
+  "status": "public",
+  "adopt": "Run a multi-round anonymous expert panel on a question and get a converged answer with a trace.",
+  "pairs_with": [
+    "awrelay",
+    "awdk"
+  ],
+  "includes": []
+}
