@@ -199,7 +199,7 @@ def cmd_cancel(args: argparse.Namespace) -> int:
 
 
 def cmd_self_test(args: argparse.Namespace) -> int:
-    from awdelphi._doctor import selftest
+    from awdelphi._selftest import selftest
 
     ok = selftest(verbose=True)
     return 0 if ok else 1
