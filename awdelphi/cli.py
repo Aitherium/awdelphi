@@ -199,10 +199,20 @@ def cmd_cancel(args: argparse.Namespace) -> int:
 
 
 def cmd_self_test(args: argparse.Namespace) -> int:
-    from awdelphi._doctor import selftest
+    # `_doctor.selftest` HAS NEVER EXISTED. The module defines `report`,
+    # `main`, `_installed` and `_local_checks`, so this raised ImportError on
+    # every invocation -- `awdelphi self-test` has never run once, while
+    # `_selftest.py` sat beside it with real machinery to prove.
+    #
+    # The seam is `_doctor.main(["--self-test"])`, which delegates to
+    # `_selftest.run()` when that module exists and says so honestly when it
+    # does not. It returns an EXIT CODE rather than a bool on purpose (its own
+    # docstring: "so a caller that forgets to interpret it still fails loudly
+    # instead of treating False as success"), so pass it straight through --
+    # the old `0 if ok else 1` would have read a truthy 1 as success.
+    from awdelphi._doctor import main as _doctor_main
 
-    ok = selftest(verbose=True)
-    return 0 if ok else 1
+    return _doctor_main(["--self-test"])
 
 
 def build_parser() -> argparse.ArgumentParser:
