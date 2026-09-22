@@ -17,9 +17,19 @@ when no path is given, and the tests gave none. Two consequences, both bad:
 
 Autouse, so a new test cannot forget.
 """
+import sys
+from pathlib import Path
+
 import pytest
 
-from awdelphi import gateway
+# Import the package FROM THE TREE, the awmine/tests idiom. Without this the
+# suite needs `pip install -e` first, which the hermetic CI gate does not do --
+# so the whole suite errored at conftest import and ran nowhere (CGT001).
+_PKG_ROOT = Path(__file__).resolve().parent.parent
+if str(_PKG_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PKG_ROOT))
+
+from awdelphi import gateway  # noqa: E402
 
 
 @pytest.fixture(autouse=True)
