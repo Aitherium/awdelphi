@@ -10,10 +10,6 @@ A single expert opinion is one opinion; a panel that reads each other's names co
 pip install awdelphi
 ```
 
-## In Claude Code
-
-- skill: `/awdelphi`
-
 ## Use it in 30 seconds
 
 Run a multi-round anonymous expert panel on a question and get a converged answer with a trace.
